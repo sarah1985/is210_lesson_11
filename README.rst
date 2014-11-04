@@ -240,9 +240,8 @@ to the method.
 #.  Wrap the ``response = urllib2.urlopen(api_query) in a ``try`` block. For
     the ``except`` exception use ``except urllib2.HTTPError, error:``
 
-#.  For the ``except`` event code, simply use ``pass`` for now as a place holder
-. You will be modifying this portion of
-    the code in the next task.
+#.  For the ``except`` event code, simply use ``pass`` for now as a place
+    holder . You will be modifying this portion of the code in the next task.
 
 Task 9: Create General Exception Helper Class
 ---------------------------------------------
