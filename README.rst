@@ -21,8 +21,8 @@ to a report.
 Checking the Weather
 ====================
 
-Tasks 7 -
--------------
+Tasks 7 - 12
+------------
 
 This assignment involves using a RESTful online API to check the weather for
 major U.S. cities by zip code. Since web service APIs are not something
@@ -51,13 +51,19 @@ Specifications
 
 #.  Create a class named ``CurrentWeather``.
 
-#.  Create a constructor for ``CurrentWeather``
-
-#.  In the constructor, create an *instance attribute* named ``zip_codes`` and
+#.  Create an *instance attribute* named ``zip_codes`` and
     assign it an empty dictionary object
 
 #.  Add a second *instance attribute* named ``base_url`` and assign it a
     string value of ``http://api.openweathermap.org/data/2.5/weather``.
+
+#.  Create a constructor for ``CurrentWeather``
+
+    #.  The constructor function should accept a variable named
+        ``zipcode_data`` with a default value of ``zipcode_database.csv``.
+
+    #.  Add a ``pass`` statement as a temporary stand in for code you will
+        add in a following task.
 
 Task 8: Move Existing Function Into Class
 -----------------------------------------
@@ -165,6 +171,9 @@ Specifications
 #.  Assign the zip as the key for the *instance attribute* named
     ``zip_codes``. For the value assign a dictionary object with the
     following keys: ``'city', 'state', 'latitude', 'longitude', 'country'``.
+
+#.  Update the class constructor function to call this method at instatiation
+    of the object.
 
 Task 11: Create Method for Retrieving Cities
 --------------------------------------------
