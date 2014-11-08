@@ -4,6 +4,8 @@
 
 
 def simple_lookup(var1, var2):
+    """exception handling practice"""
+
     try:
         return var1[var2]
     except LookupError:
