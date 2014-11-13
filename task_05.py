@@ -1,0 +1,11 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+"""Task 05: Custom Exception Class"""
+
+
+class CustomError(Exception):
+    """custom error"""
+
+    def __init__(self, cause):
+        Exception.__init__(self)
+        self.cause = cause

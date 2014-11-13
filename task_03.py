@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-"""Task 03 module"""
+"""Task 03: Using Finally"""
 
 
 import time
