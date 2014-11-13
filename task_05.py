@@ -8,4 +8,5 @@ class CustomError(Exception):
 
     def __init__(self, message, cause):
         Exception.__init__(self)
+        self.message = message
         self.cause = cause
