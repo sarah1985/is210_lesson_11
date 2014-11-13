@@ -6,6 +6,6 @@
 class CustomError(Exception):
     """custom error"""
 
-    def __init__(self, cause):
+    def __init__(self, message, cause):
         Exception.__init__(self)
         self.cause = cause
