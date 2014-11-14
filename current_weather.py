@@ -4,16 +4,63 @@
 
 import urllib2
 import json
+import csv
+import os
 
-base_url = 'http://api.openweathermap.org/data/2.5/weather'
+
+class CurrentWeatherException(Exception):
+    """weather exception class"""
+
+    def __init__(self, code, message):
+        super.
+        self.errno = code
+        self.message = message
 
 
-def get_weather(city, country, units='metric'):
-    api_query = '{}?units={}&q={},{}'.format(
-        base_url, units, city, country
-    )
+class CurrentWeather(object):
+    """current weather class"""
 
-    response = urllib2.urlopen(api_query)
+    zip_codes = {}
+    base_url = 'http://api.openweathermap.org/data/2.5/weather'
+    def __init__(self, zipcode_data='zipcode_database.csv'):
+        pass
+
+    def get_weather(self, city, country, units='metric'):
+        """get weather"""
+
+        self.api_query = '{}?units={}&q={},{}'.format(
+            base_url, units, city, country
+        )
+
+        try:
+            self.response = urllib2.urlopen(api_query)
+        except urllib2.HTTPError, error:
+            raise CurrentWeatherException(
+                error.code,
+                'Error: {} {}'.format(error.code, error.msg))
+
+    def read_csv(self, csv_path):
+        """csv reader"""
+
+        if os.path.exists(csv_path):
+
+            try:
+                input_file = csv.reader(open(csv_path, 'r'))
+
+                for line in input_file:
+                    zip_codes[line[0]] = {
+                        'city': line[1],
+                        'state': line[2],
+                        'latitude': float(line[3]),
+                        'longitude': float(line[4]),
+                        'country': line[5]
+                        }
+
+            except IOError:
+                if input_file is not None:
+            finally:
+
+
 
     return json.load(response)['main']
 

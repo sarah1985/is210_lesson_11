@@ -7,17 +7,22 @@ import time
 
 
 class CustomLogger(object):
+    """customer logger docstring"""
 
     def __init__(self, logfilename):
         self.logfilename = logfilename
         self.msgs = []
 
     def log(self, msg, timestamp=None):
+        """log docstring"""
+
         if timestamp is None:
             timestamp = time.time()
         self.msgs.append((timestamp, msg))
 
     def flush(self):
+        """flush docstring"""
+
         handled = []
 
         fhandler = open(self.logfilename, 'a')
