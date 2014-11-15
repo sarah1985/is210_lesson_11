@@ -56,10 +56,30 @@ class CurrentWeather(object):
                         'country': line[5]
                         }
 
-            except IOError:
-                if input_file is not None:
+                except IOError:
+                    raise CurrentWeatherException(
+                        4151, 'Error reading {}'.format(csv_path)))
             finally:
+                if input_file is not None:
+                    input_file.close()
 
+        else:
+            raise CurrentWeatherException(
+                9010, 'CSV zipcode database {} not found'.format(csv_path))
+
+    def get_city_by_zipcode(self, zipcode):
+        """get city with zip code"""
+
+        if zipcode not in self.zip_codes:
+            raise CurrentWeatherException(
+                5150, "Error: Zipcode not found in Zipcode data.")
+
+        return self.zip_codes['city']
+
+    def get_weather_by_zipcode(self, zipcode):
+        """weather by zipcode"""
+
+        return self.get_weather(self.get_city_by_zipcode(zipcode), 'US')
 
 
     return json.load(response)['main']
