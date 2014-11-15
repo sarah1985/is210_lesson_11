@@ -12,7 +12,7 @@ class CurrentWeatherException(Exception):
     """weather exception class"""
 
     def __init__(self, code, message):
-        super.
+        super(CurrentWeatherException, self).__init__()
         self.errno = code
         self.message = message
 
