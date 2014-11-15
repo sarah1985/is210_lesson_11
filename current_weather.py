@@ -56,9 +56,10 @@ class CurrentWeather(object):
                         'country': line[5]
                         }
 
-                except IOError:
-                    raise CurrentWeatherException(
-                        4151, 'Error reading {}'.format(csv_path)))
+            except IOError:
+                raise CurrentWeatherException(
+                    4151, 'Error reading {}'.format(csv_path))
+
             finally:
                 if input_file is not None:
                     input_file.close()
@@ -66,6 +67,7 @@ class CurrentWeather(object):
         else:
             raise CurrentWeatherException(
                 9010, 'CSV zipcode database {} not found'.format(csv_path))
+
 
     def get_city_by_zipcode(self, zipcode):
         """get city with zip code"""
@@ -79,12 +81,8 @@ class CurrentWeather(object):
     def get_weather_by_zipcode(self, zipcode):
         """weather by zipcode"""
 
-        return self.get_weather(self.get_city_by_zipcode(zipcode), 'US')
+    #return self.get_weather(self.get_city_by_zipcode(zipcode), 'US')
 
-
-    return json.load(response)['main']
-
-
-print get_weather('New York', 'us')
-print get_weather('San Francisco', 'us')
-print get_weather('Austin', 'us')
+# print get_weather('New York', 'us')
+# print get_weather('San Francisco', 'us')
+# print get_weather('Austin', 'us')
