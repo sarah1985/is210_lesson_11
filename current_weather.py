@@ -12,6 +12,8 @@ class CurrentWeatherException(Exception):
     """weather exception class"""
 
     def __init__(self, code, message):
+        """constructor"""
+
         super(CurrentWeatherException, self).__init__()
         self.errno = code
         self.message = message
@@ -24,6 +26,8 @@ class CurrentWeather(object):
     base_url = 'http://api.openweathermap.org/data/2.5/weather'
 
     def __init__(self, zipcode_data='zipcode_database.csv'):
+        """docstring"""
+        
         self.read_csv(zipcode_data)
 
     def get_weather(self, city, country, units='metric'):
