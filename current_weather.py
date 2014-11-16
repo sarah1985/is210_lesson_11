@@ -86,9 +86,3 @@ class CurrentWeather(object):
         """weather by zipcode"""
 
         return self.get_weather(self.get_city_by_zipcode(zipcode), 'US')
-
-print get_weather('New York', 'us')
-print get_weather('San Francisco', 'us')
-print get_weather('Austin', 'us')
-# if __name__ == '__main__':
-#     print CurrentWeather('70175')
