@@ -27,7 +27,7 @@ class CurrentWeather(object):
 
     def __init__(self, zipcode_data='zipcode_database.csv'):
         """docstring"""
-        
+
         self.read_csv(zipcode_data)
 
     def get_weather(self, city, country, units='metric'):
@@ -48,32 +48,30 @@ class CurrentWeather(object):
     def read_csv(self, csv_path):
         """csv reader"""
 
-        if os.path.exists(csv_path):
-
-            try:
-                with open(csv_path, 'r') as csv_file:
-                    input_file = csv.reader(csv_file)
-
-                for line in input_file:
-                    csv_path[line[0]] = {
-                        'city': line[1],
-                        'state': line[2],
-                        'latitude': float(line[3]),
-                        'longitude': float(line[4]),
-                        'country': line[5]
-                        }
-
-            except IOError:
-                raise CurrentWeatherException(
-                    4151, 'Error reading {}'.format(csv_path))
-
-            finally:
-                if csv_file is not None:
-                    csv_file.close()
-
-        else:
+        if not os.path.exists(csv_path):
             raise CurrentWeatherException(
                 9010, 'CSV zipcode database {} not found'.format(csv_path))
+
+        try:
+            with open(csv_path, 'r') as csv_file:
+                input_file = csv.reader(csv_file)
+
+            for line in input_file:
+                csv_path[line[0]] = {
+                    'city': line[1],
+                    'state': line[2],
+                    'latitude': float(line[3]),
+                    'longitude': float(line[4]),
+                    'country': line[5]
+                    }
+
+        except IOError:
+            raise CurrentWeatherException(
+                4151, 'Error reading {}'.format(csv_path))
+
+        finally:
+            if csv_file is not None:
+                csv_file.close()
 
     def get_city_by_zipcode(self, zipcode):
         """get city with zip code"""
@@ -89,8 +87,8 @@ class CurrentWeather(object):
 
         return self.get_weather(self.get_city_by_zipcode(zipcode), 'US')
 
-#print get_weather('New York', 'us')
-#print get_weather('San Francisco', 'us')
-#print get_weather('Austin', 'us')
+print get_weather('New York', 'us')
+print get_weather('San Francisco', 'us')
+print get_weather('Austin', 'us')
 # if __name__ == '__main__':
 #     print CurrentWeather('70175')
