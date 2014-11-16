@@ -22,6 +22,7 @@ class CurrentWeather(object):
 
     zip_codes = {}
     base_url = 'http://api.openweathermap.org/data/2.5/weather'
+    
     def __init__(self, zipcode_data='zipcode_database.csv'):
         pass
 
