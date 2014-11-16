@@ -22,6 +22,7 @@ class CurrentWeather(object):
 
     zip_codes = {}
     base_url = 'http://api.openweathermap.org/data/2.5/weather'
+
     def __init__(self, zipcode_data='zipcode_database.csv'):
         self.read_csv(zipcode_data)
 
@@ -29,8 +30,7 @@ class CurrentWeather(object):
         """get weather"""
 
         api_query = '{}?units={}&q={},{}'.format(
-        base_url, units, city, country
-        )
+            self.base_url, units, city, country)
 
         try:
             response = urllib2.urlopen(api_query)
@@ -47,7 +47,8 @@ class CurrentWeather(object):
         if os.path.exists(csv_path):
 
             try:
-                input_file = csv.reader(open(csv_path, 'r'))
+                with open(csv_path, 'r') as csv_file:
+                    input_file = csv.reader(csv_file)
 
                 for line in input_file:
                     csv_path[line[0]] = {
@@ -63,8 +64,8 @@ class CurrentWeather(object):
                     4151, 'Error reading {}'.format(csv_path))
 
             finally:
-                if input_file is not None:
-                    input_file.close()
+                if csv_file is not None:
+                    csv_file.close()
 
         else:
             raise CurrentWeatherException(
@@ -84,6 +85,8 @@ class CurrentWeather(object):
 
         return self.get_weather(self.get_city_by_zipcode(zipcode), 'US')
 
-# print get_weather('New York', 'us')
-# print get_weather('San Francisco', 'us')
-# print get_weather('Austin', 'us')
+#print get_weather('New York', 'us')
+#print get_weather('San Francisco', 'us')
+#print get_weather('Austin', 'us')
+# if __name__ == '__main__':
+#     print CurrentWeather('70175')
