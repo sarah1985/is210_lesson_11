@@ -40,7 +40,7 @@ class CustomLogger(object):
             finally:
                 fhandler.close()
 
-        except StandardError:
+        except BaseException:
             raise self.log('other error')
         try:
             for index in handled[::-1]:
