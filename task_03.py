@@ -34,8 +34,8 @@ class CustomLogger(object):
                     fhandler.write(str(entry) + '\n')
                     handled.append(index)
 
-        except IOError:
-            raise self.log('input output error')
+            except IOError:
+                raise self.log('input output error')
 
         finally:
             fhandler.close()
