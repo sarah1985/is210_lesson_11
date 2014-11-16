@@ -41,7 +41,7 @@ class CustomLogger(object):
                 fhandler.close()
 
         except StandardError:
-            raise self.log('exception error')
+            raise self.log('other error')
         try:
             for index in handled[::-1]:
                 del self.msgs[index]
