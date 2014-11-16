@@ -37,9 +37,12 @@ class CustomLogger(object):
             except IOError:
                 raise self.log('input output error')
 
-        finally:
-            fhandler.close()
+            finally:
+                fhandler.close()
 
+        except Exception:
+            raise self.log('exception error')
+        
         try:
             for index in handled[::-1]:
                 del self.msgs[index]
